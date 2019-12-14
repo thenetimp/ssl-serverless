@@ -1,4 +1,7 @@
-service: ssrserverless-angular
+service: ssrserverless
+
+plugins:
+  - serverless-apigw-binary
 
 provider:
   name: aws
@@ -9,7 +12,6 @@ provider:
   region: ap-southeast-2
 
 package:
-  excludeDevDependencies: false
   exclude:
    - src/**
    - node_modules/**
@@ -17,6 +19,11 @@ package:
    - e2e/**
    - coverage/**
    - '!node_modules/aws-serverless-express/**'
+   - '!node_modules/binary-case/**'
+   - '!node_modules/type-is/**'
+   - '!node_modules/media-typer/**'
+   - '!node_modules/mime-types/**'
+   - '!node_modules/mime-db/**'
 
 custom:
   apigwBinary:
@@ -25,7 +32,7 @@ custom:
 
 functions:
   api:
-    handler: lambda.ssrserverless
+    handler: lambda.universal
     events:
       - http: ANY {proxy+}
       - http: ANY /
