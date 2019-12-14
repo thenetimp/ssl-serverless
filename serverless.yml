@@ -9,6 +9,7 @@ provider:
   region: ap-southeast-2
 
 package:
+  excludeDevDependencies: false
   exclude:
    - src/**
    - node_modules/**
